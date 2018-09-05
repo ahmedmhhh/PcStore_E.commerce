@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PcStore.WebUI", "PcStore.WebUI\PcStore.WebUI.csproj", "{B189E47B-DBDD-45AD-84E2-0FF51F26213B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PcStore.Domain", "PcStore.Domain\PcStore.Domain.csproj", "{150D5932-63A2-4513-9BAA-CE51506FC9D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PcStore.UnitTests", "PcStore.UnitTests\PcStore.UnitTests.csproj", "{487D81A8-4A5A-4EF4-82AC-D7542EE78A2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B189E47B-DBDD-45AD-84E2-0FF51F26213B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B189E47B-DBDD-45AD-84E2-0FF51F26213B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B189E47B-DBDD-45AD-84E2-0FF51F26213B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B189E47B-DBDD-45AD-84E2-0FF51F26213B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{150D5932-63A2-4513-9BAA-CE51506FC9D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{150D5932-63A2-4513-9BAA-CE51506FC9D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{150D5932-63A2-4513-9BAA-CE51506FC9D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{150D5932-63A2-4513-9BAA-CE51506FC9D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{487D81A8-4A5A-4EF4-82AC-D7542EE78A2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{487D81A8-4A5A-4EF4-82AC-D7542EE78A2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{487D81A8-4A5A-4EF4-82AC-D7542EE78A2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{487D81A8-4A5A-4EF4-82AC-D7542EE78A2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
