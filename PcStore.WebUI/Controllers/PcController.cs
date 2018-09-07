@@ -1,4 +1,5 @@
 ﻿using PcStore.Domain.Abstract;
+using PcStore.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,19 @@ namespace PcStore.WebUI.Controllers
         }
         public ViewResult List(int page)
         {
-            return View(repository.products
-                .OrderBy(b=>b.Id)
-                .Skip((page-1)*PageSize)
-                .Take(PageSize)
-                );
+            ProductListViewModel model = new ProductListViewModel()
+            {
+                Products = repository.products
+                .OrderBy(b => b.Id)
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize),
+                PagingInfo = new Models.PagingInfo{
+                    CurrentPage = page,
+                    ItemsPerPages = PageSize,
+                    TotalItems = repository.products.Count()
+                }
+            };
+            return View(model);
         }
         public ViewResult ListAll()
         {
