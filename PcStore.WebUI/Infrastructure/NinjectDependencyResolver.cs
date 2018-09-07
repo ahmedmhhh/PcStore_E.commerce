@@ -1,4 +1,7 @@
-﻿using Ninject;
+﻿using Moq;
+using Ninject;
+using PcStore.Domain.Abstract;
+using PcStore.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +21,11 @@ namespace PcStore.WebUI.Infrastructure
 
         private void AddBindings()
         {
-            throw new NotImplementedException();
+            Mock<IPcRepository> mock = new Mock<IPcRepository>();
+            mock.Setup(p => p.products).Returns(
+                new List<Product> { new Product { Name="VGA",Brands="hp"},new Product { Name = "Mouse", Brands = "dell" },new Product { Name = "pc", Brands = "optipix" } }
+                );
+            kernel.Bind<IPcRepository>().ToConstant(mock.Object);
         }
 
         public object GetService(Type serviceType)
