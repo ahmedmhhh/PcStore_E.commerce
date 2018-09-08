@@ -16,7 +16,7 @@ namespace PcStore.WebUI.Controllers
         {
             repository = PcParam;
         }
-        public ViewResult List(int page)
+        public ViewResult List(int page=1)
         {
             ProductListViewModel model = new ProductListViewModel()
             {

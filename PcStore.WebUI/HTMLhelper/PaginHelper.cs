@@ -6,9 +6,9 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PcStore.WebUI.HTMLhelper
+namespace PcStore.WebUI.HtmlHelper
 {
-    public static class PagingHelper
+    public static class PaginHelper
     {
         public static MvcHtmlString PageLinks(this System.Web.Mvc.HtmlHelper html,PagingInfo pageInfo,Func<int,string> PageUrl) {
             StringBuilder result = new StringBuilder();
