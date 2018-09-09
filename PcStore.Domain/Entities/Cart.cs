@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PcStore.Domain.Entities
 {
-    class Cart
+    public class Cart
     {
         private List<CardLine> lineCollection = new List<CardLine>();
         public void Additem(Product product,int quantity = 1)
