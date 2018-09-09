@@ -89,6 +89,7 @@
     <Compile Include="Abstract\IPcRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFPcRepository.cs" />
+    <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Migrations\201809071339561_InitialCreate.cs" />
     <Compile Include="Migrations\201809071339561_InitialCreate.Designer.cs">
