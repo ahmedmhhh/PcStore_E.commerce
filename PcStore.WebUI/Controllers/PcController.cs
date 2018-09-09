@@ -16,11 +16,12 @@ namespace PcStore.WebUI.Controllers
         {
             repository = PcParam;
         }
-        public ViewResult List(int page=1)
+        public ViewResult List(string specilization,int page=1)
         {
             ProductListViewModel model = new ProductListViewModel()
             {
                 Products = repository.products
+                .Where(p => specilization == null||p.Specilization == specilization)
                 .OrderBy(b => b.Id)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
@@ -28,7 +29,8 @@ namespace PcStore.WebUI.Controllers
                     CurrentPage = page,
                     ItemsPerPages = PageSize,
                     TotalItems = repository.products.Count()
-                }
+                },
+                CurrentSpecilization =specilization
             };
             return View(model);
         }

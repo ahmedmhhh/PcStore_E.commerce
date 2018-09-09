@@ -7,7 +7,7 @@ using PcStore.WebUI.Controllers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using PcStore.WebUI.HTMLhelper;
+using PcStore.WebUI.HtmlHelper;
 using System.Web.Mvc;
 using PcStore.WebUI.Models;
 
@@ -32,7 +32,7 @@ namespace PcStore.UnitTests
 
             PcController controller = new PcController(mock.Object);
             //art
-            ProductListViewModel result =(ProductListViewModel) controller.List(2).Model;
+            ProductListViewModel result =(ProductListViewModel) controller.List(null,2).Model;
             //assert
             Product[] ProductArray = result.Products.ToArray();
             Assert.IsTrue(ProductArray.Length == 3);
@@ -73,28 +73,63 @@ namespace PcStore.UnitTests
                      Name="dell"
                  },
                  new Product {
-                     Name="dell"
+                     Name="acer"
                  },
                  new Product
                  {
-                     Name = "dell"
+                     Name = "imb"
                  },
                  new Product
                  {
-                     Name = "dell"
+                     Name = "lenovo"
                  }
                 }
                 );
             PcController controller = new PcController(mock.Object);
             controller.PageSize = 3;
             //art
-            ProductListViewModel result = (ProductListViewModel) controller.List(2).Model;
+            ProductListViewModel result = (ProductListViewModel) controller.List(null,2).Model;
             //assert
             PagingInfo pageinfo = result.PagingInfo;
             Assert.AreEqual(pageinfo.CurrentPage, 2);
             Assert.AreEqual(pageinfo.ItemsPerPages, 3);
             Assert.AreEqual(pageinfo.TotalItems, 5);
             Assert.AreEqual(pageinfo.TotalPages, 2);
+        }
+        [TestMethod]
+        public void Can_Filter_Product()
+        {
+            Mock<IPcRepository> mock = new Mock<IPcRepository>();
+            mock.Setup(b => b.products).Returns(
+                new Product[] {
+                 new Product {
+                     Name="hp",Specilization="lap"
+                 },
+                 new Product {
+                     Name="dell",Specilization="pc"
+                 },
+                 new Product {
+                     Name="acer",Specilization="tablet"
+                 },
+                 new Product
+                 {
+                     Name = "imb",Specilization="mobile"
+                 },
+                 new Product
+                 {
+                     Name = "lenovo",Specilization="pc"
+                 }
+                }
+                );
+            PcController controller = new PcController(mock.Object);
+            controller.PageSize = 3;
+
+            //Act 
+            Product[] result =((ProductListViewModel) controller.List("pc", 1).Model).Products.ToArray();
+            //assert
+            Assert.AreEqual(result.Length, 2);
+            Assert.IsTrue(result[0].Name == "dell" && result[0].Specilization =="pc");
+            Assert.IsTrue(result[1].Name == "lenovo" && result[1].Specilization == "pc");
         }
     }
 }

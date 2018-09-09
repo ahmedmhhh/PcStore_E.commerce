@@ -8,8 +8,7 @@
 @foreach (var item in Model.Products)
 {
     <div>
-        <h3><strong>@item.Name</strong><span class="pull-right label-primary">@item.Price.ToString("c")</span></h3>   
-        <span class="lead">@item.Description</span>
+       @Html.Partial("ProductSummary",item);
     </div>
 }
 <div class="btn-group pull-right">
