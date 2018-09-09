@@ -131,5 +131,40 @@ namespace PcStore.UnitTests
             Assert.IsTrue(result[0].Name == "dell" && result[0].Specilization =="pc");
             Assert.IsTrue(result[1].Name == "lenovo" && result[1].Specilization == "pc");
         }
+        [TestMethod]
+        public void Can_Create_Specilization()
+        {
+            Mock<IPcRepository> mock = new Mock<IPcRepository>();
+            mock.Setup(b => b.products).Returns(
+                new Product[] {
+                 new Product {
+                     Name="hp",Specilization="lap"
+                 },
+                 new Product {
+                     Name="dell",Specilization="pc"
+                 },
+                 new Product {
+                     Name="acer",Specilization="tablet"
+                 },
+                 new Product
+                 {
+                     Name = "imb",Specilization="mobile"
+                 },
+                 new Product
+                 {
+                     Name = "lenovo",Specilization="pc"
+                 }
+                }
+                );
+            NavController controller = new NavController(mock.Object);
+            
+
+            //Act 
+            string[] result = ((IEnumerable<string>)controller.Menu().Model).ToArray();
+            //assert
+            Assert.AreEqual(result.Length, 4);
+            Assert.IsTrue(result[0] == "lap" && result[1] == "pc");
+            
+        }
     }
 }

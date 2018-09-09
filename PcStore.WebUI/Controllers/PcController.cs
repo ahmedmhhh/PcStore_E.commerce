@@ -21,14 +21,16 @@ namespace PcStore.WebUI.Controllers
             ProductListViewModel model = new ProductListViewModel()
             {
                 Products = repository.products
-                .Where(p => specilization == null||p.Specilization == specilization)
+                .Where(p => specilization == null || p.Specilization == specilization)
                 .OrderBy(b => b.Id)
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize),
-                PagingInfo = new Models.PagingInfo{
+                PagingInfo = new Models.PagingInfo {
                     CurrentPage = page,
                     ItemsPerPages = PageSize,
-                    TotalItems = repository.products.Count()
+                    TotalItems = specilization == null ? 
+                    repository.products.Count() : 
+                    repository.products.Where(b => b.Specilization == specilization).Count()
                 },
                 CurrentSpecilization =specilization
             };
