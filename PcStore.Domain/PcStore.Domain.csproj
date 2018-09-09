@@ -90,11 +90,28 @@
     <Compile Include="Concrete\EFDbContext.cs" />
     <Compile Include="Concrete\EFPcRepository.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Migrations\201809071339561_InitialCreate.cs" />
+    <Compile Include="Migrations\201809071339561_InitialCreate.Designer.cs">
+      <DependentUpon>201809071339561_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809091114013_specilization.cs" />
+    <Compile Include="Migrations\201809091114013_specilization.Designer.cs">
+      <DependentUpon>201809091114013_specilization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201809071339561_InitialCreate.resx">
+      <DependentUpon>201809071339561_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809091114013_specilization.resx">
+      <DependentUpon>201809091114013_specilization.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
