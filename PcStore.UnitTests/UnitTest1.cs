@@ -166,5 +166,74 @@ namespace PcStore.UnitTests
             Assert.IsTrue(result[0] == "lap" && result[1] == "pc");
             
         }
+        [TestMethod]
+        public void Indicates_Selected_Spec()
+        {
+            Mock<IPcRepository> mock = new Mock<IPcRepository>();
+            mock.Setup(b => b.products).Returns(
+                new Product[] {
+                 new Product {
+                     Name="hp",Specilization="lap"
+                 },
+                 new Product {
+                     Name="dell",Specilization="pc"
+                 },
+                 new Product {
+                     Name="acer",Specilization="tablet"
+                 },
+                 new Product
+                 {
+                     Name = "imb",Specilization="mobile"
+                 },
+                 new Product
+                 {
+                     Name = "lenovo",Specilization="pc"
+                 }
+                }
+                );
+            NavController controller = new NavController(mock.Object);
+
+
+            //Act 
+            string result = controller.Menu("pc").ViewBag.SelectedSpec;
+            //assert
+            Assert.AreEqual("pc",result);
+           
+        }
+        [TestMethod]
+        public void Generate_Spec_Specific_Product_Count()
+        {
+            Mock<IPcRepository> mock = new Mock<IPcRepository>();
+            mock.Setup(b => b.products).Returns(
+                new Product[] {
+                 new Product {
+                     Name="hp",Specilization="lap"
+                 },
+                 new Product {
+                     Name="dell",Specilization="pc"
+                 },
+                 new Product {
+                     Name="acer",Specilization="tablet"
+                 },
+                 new Product
+                 {
+                     Name = "imb",Specilization="mobile"
+                 },
+                 new Product
+                 {
+                     Name = "lenovo",Specilization="pc"
+                 }
+                }
+                );
+            PcController controller = new PcController(mock.Object);
+
+
+            //Act 
+            int result = ((ProductListViewModel) controller.List("pc").Model).PagingInfo.TotalItems;
+            int result2 = ((ProductListViewModel)controller.List("lap").Model).PagingInfo.TotalItems;
+            //assert
+            Assert.AreEqual(result, 2);
+            Assert.AreEqual(result2, 1);
+        }
     }
 }
