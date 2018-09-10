@@ -2,6 +2,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PcStore.Domain.Entities;
 using System.Linq;
+using Moq;
+using PcStore.Domain.Abstract;
+using PcStore.WebUI.Controllers;
+using System.Web.Mvc;
 
 namespace PcStore.UnitTests
 {
@@ -146,6 +150,26 @@ namespace PcStore.UnitTests
             target.Clear();
             //Assert
             Assert.AreEqual(target.lines.Count(), 0);
+        }
+        [TestMethod]
+        public void Can_add_to_cart()
+        {
+            Mock<IPcRepository> mock = new Mock<IPcRepository>();
+            mock.Setup(m => m.products).Returns(
+                new Product[] {
+                    new Product {Id=1,Name="hp 4540",Specilization="laptop" }
+                }.AsQueryable()
+                );
+            Cart cart = new Cart();
+            CartController target = new CartController(mock.Object);
+            //art
+            target.AddToCart(cart,1,null);
+            RedirectToRouteResult result = target.AddToCart(cart, 2, "myUrl");
+            //assert
+            Assert.AreEqual(cart.lines.Count(), 1);
+            Assert.AreEqual(cart.lines.ToArray()[0].products.Name, "hp 4540");
+            Assert.AreEqual(result.RouteValues["action"],"index");
+            Assert.AreEqual(result.RouteValues["returnUrl"], "myUrl");
         }
     }
 }

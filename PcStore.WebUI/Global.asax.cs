@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PcStore.Domain.Entities;
+using PcStore.WebUI.Infrastructure.Binders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +15,7 @@ namespace PcStore.WebUI
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ModelBinders.Binders.Add(typeof(Cart),new CartModelBinder());
         }
     }
 }
