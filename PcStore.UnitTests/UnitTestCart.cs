@@ -6,6 +6,7 @@ using Moq;
 using PcStore.Domain.Abstract;
 using PcStore.WebUI.Controllers;
 using System.Web.Mvc;
+using PcStore.WebUI.Models;
 
 namespace PcStore.UnitTests
 {
@@ -170,6 +171,19 @@ namespace PcStore.UnitTests
             Assert.AreEqual(cart.lines.ToArray()[0].products.Name, "hp 4540");
             Assert.AreEqual(result.RouteValues["action"],"index");
             Assert.AreEqual(result.RouteValues["returnUrl"], "myUrl");
+        }
+        [TestMethod]
+        public void Can_view_Cart_content()
+        {
+            Cart cart = new Cart();
+            CartController target = new CartController(null);
+
+            //art
+            CartIndexViewModel rs =(CartIndexViewModel) target.Index(cart, "myUrl").ViewData.Model;
+
+            //assert
+            Assert.AreEqual(rs.Cart, cart);
+            Assert.AreEqual(rs.ReturnUrl, "myUrl");
         }
     }
 }
