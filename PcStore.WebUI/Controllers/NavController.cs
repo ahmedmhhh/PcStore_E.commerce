@@ -20,9 +20,9 @@ namespace PcStore.WebUI.Controllers
             IEnumerable<string> spec = repository.products
                 .Select(b => b.Specilization)
                 .Distinct();
-               
-            
-            return PartialView(spec);
+
+            //string viewName = MobileLayout ? "MenuMobile" : "Menu";
+            return PartialView("FlexMenu",spec);
         }
     }
 }

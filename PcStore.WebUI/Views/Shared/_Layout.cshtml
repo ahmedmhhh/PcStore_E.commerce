@@ -6,18 +6,32 @@
     <title>@ViewBag.Title</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet"/>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
-    
+    <link href="~/Content/ErrorStyle.css" rel="stylesheet" />
+    <style>
+        .navbar-right{
+            float:right !important;
+            margin-right:20px;
+            margin-left:15px;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse" role="navigation">
-        <a class="navbar-brand" href="#">Pc Store</a>
+        <a class="navbar-brand" href="#">
+            <span class="hidden-xs"> Pc Store </span>
+            <div class="visible-xs">Pc</div>
+            <div class="visible-xs">Store</div>
+        </a>
         @Html.Action("Summary","Cart")
     </div>
+    <div class="visible-xs">
+        @Html.Action("Menu","Nav",new { MobileLayout = true})
+    </div>
     <div class="row panel">
-        <div id="specialization" class="col-xs-3">
+        <div id="specialization" class="col-xs-3 hidden-xs">
             @Html.Action("Menu", "Nav")
         </div>
-        <div class="col-xs-8">
+        <div class="col-xs-12 col-sm-8">
            @RenderBody()
         </div>
     </div>

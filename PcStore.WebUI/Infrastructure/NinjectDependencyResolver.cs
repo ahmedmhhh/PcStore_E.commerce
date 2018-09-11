@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Configuration;
 
 namespace PcStore.WebUI.Infrastructure
 {
@@ -27,6 +28,11 @@ namespace PcStore.WebUI.Infrastructure
             //    new List<Product> { new Product { Name="VGA",Brands="hp",Description="graphic card"},new Product { Name = "Mouse", Brands = "dell", Description = "Pc Accessoiris" },new Product { Name = "pc", Brands = "optipix", Description = "desktop pc" } }
             //    );
             kernel.Bind<IPcRepository>().To<EFPcRepository>();
+            EmailSettings emailsettings = new EmailSettings {
+
+                WriteAsFile =bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"]??"false")
+            };
+            kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings",emailsettings);
         }
 
         public object GetService(Type serviceType)

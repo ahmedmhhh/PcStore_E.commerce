@@ -1,0 +1,47 @@
+﻿@model PcStore.Domain.Entities.ShippingDetails
+
+@{
+    ViewBag.Title = "Pc Store : CheckOut";
+}
+
+<h2>Check out Now</h2>
+<p>Please enter your details , and we'll ship your products right away</p>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary();
+    <h3>Ship to</h3>
+    <div class="form-group">
+        <label>Name:</label>
+        @Html.TextBoxFor(x=>x.Name,new { @class="form-control"})
+    </div>
+    <h3>Address</h3>
+    <div class="form-group">
+        <label>Line 1:</label>
+        @Html.TextBoxFor(x => x.Line1, new { @class = "form-control" })
+    </div>
+   
+    <div class="form-group">
+        <label>Line 2:</label>
+        @Html.TextBoxFor(x => x.Line2, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>City</label>
+        @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <label>Country</label>
+        @Html.TextBoxFor(x => x.Country, new { @class = "form-control" })
+    </div>
+
+    <h3>Options</h3>
+    <div class="checkbox">
+        <label>@Html.EditorFor(x=>x.GiftWrap)Gift wrap these product(s)</label>
+    </div>
+
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Complete Order"/>
+    </div>
+}

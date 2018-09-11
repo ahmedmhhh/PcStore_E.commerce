@@ -1,0 +1,13 @@
+﻿@model IEnumerable<string>
+    @{ 
+        bool horizontal = (bool) (ViewContext.RouteData.Values["MobileLayout"] ?? false);
+        string wrapperClasses = horizontal ? "btn-group btn-group-sm btn-group-justified" : null; 
+    }
+<div class="@wrapperClasses">
+    @Html.ActionLink("Home", "List", "Pc", null, new { @class = horizontal?"btn btn-default btn-sm": "btn btn-block btn-default btn-lg" })
+
+    @foreach (var item in Model)
+    {
+        @Html.RouteLink(item, new { controller = "Pc", action = "List", specilization = item, page = 1 }, new { @class = horizontal? "btn btn-default btn-sm" : "btn btn-block btn-default btn-lg " + ((item == ViewBag.SelectedSpec) ? "btn-primary" : "").ToString() })
+    }
+</div>

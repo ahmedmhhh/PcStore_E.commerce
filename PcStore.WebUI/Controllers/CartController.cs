@@ -12,9 +12,11 @@ namespace PcStore.WebUI.Controllers
     public class CartController : Controller
     {
         private IPcRepository repository;
-        public CartController(IPcRepository repo)
+        private IOrderProcessor orderProcessor;
+        public CartController(IPcRepository repo,IOrderProcessor proc)
         {
             repository = repo;
+            orderProcessor = proc;
         }
         public RedirectToRouteResult AddToCart(Cart cart,int id,string returnUrl)
         {
@@ -58,6 +60,25 @@ namespace PcStore.WebUI.Controllers
         public PartialViewResult Summary(Cart cart)
         {
             return PartialView(cart);
+        }
+        public ViewResult Checkout()
+        {
+            return View(new ShippingDetails());
+        }
+        [HttpPost]
+        public ViewResult Checkout(Cart cart,ShippingDetails shippingDetails)
+        {
+            if (cart.lines.Count() == 0)
+                ModelState.AddModelError("", "Sorry your Cart is empty");
+            if (ModelState.IsValid)
+            {
+                orderProcessor.ProcessorOrder(cart, shippingDetails);
+                cart.Clear();
+                return View("Completed");
+            }
+            else {
+                return View(shippingDetails);
+            }
         }
     }
 }
