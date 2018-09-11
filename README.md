@@ -4,4 +4,4 @@ Online Shopping For Hardware &amp; pc accessories by ASP.net MVC
 <img src="https://user-images.githubusercontent.com/16438786/45266939-52e06600-b463-11e8-8001-842947b723a9.PNG" width=800 height=500 />
 
 * Shopping Cart Page
-<img src="https://user-images.githubusercontent.com/16438786/45268730-35ba9000-b481-11e8-9526-9ee08c739bf9.PNG" width=800 height=500 />
+<img src="https://user-images.githubusercontent.com/16438786/45294083-7c989c00-b4fa-11e8-9e1e-7cfd700bf601.PNG" width=800 height=500 />
