@@ -106,6 +106,10 @@
     <Compile Include="Migrations\201809121051465_admin.Designer.cs">
       <DependentUpon>201809121051465_admin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809121932522_uploadimagae.cs" />
+    <Compile Include="Migrations\201809121932522_uploadimagae.Designer.cs">
+      <DependentUpon>201809121932522_uploadimagae.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -122,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809121051465_admin.resx">
       <DependentUpon>201809121051465_admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809121932522_uploadimagae.resx">
+      <DependentUpon>201809121932522_uploadimagae.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

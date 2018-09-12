@@ -94,5 +94,22 @@ namespace PcStore.UnitTests
             mock.Verify(b => b.SaveProduct(It.IsAny<Product>()),Times.Never());
             Assert.IsInstanceOfType(resutl, typeof(ViewResult));
         }
+        [TestMethod]
+        public void Can_Delete_Product()
+        {
+            //Arrange
+            Mock<IPcRepository> mock = new Mock<IPcRepository>();
+            Product product = new Product { Id = 1, Name = "test product" };
+            mock.Setup(b => b.products).Returns(new Product[] {
+                new Product {Id = 2,Name="test2" },
+                new Product {Id=3 ,Name="test3"}
+            });
+            AdminController target = new AdminController(mock.Object);
+            target.ModelState.AddModelError("error", "error");
+
+            ActionResult resutl = target.Delete(product.Id);
+
+            mock.Verify(b => b.DeleteProduct(product.Id));
+        }
     }
 }

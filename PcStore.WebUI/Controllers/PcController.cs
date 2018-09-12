@@ -1,4 +1,5 @@
 ﻿using PcStore.Domain.Abstract;
+using PcStore.Domain.Entities;
 using PcStore.WebUI.Models;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,18 @@ namespace PcStore.WebUI.Controllers
         public ViewResult ListAll()
         {
             return View(repository.products);
+        }
+        public FileContentResult GetImage(int id)
+        {
+            Product product = repository.products.FirstOrDefault(p => p.Id == id);
+            if (product != null)
+            {
+                return File(product.ImageData, product.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

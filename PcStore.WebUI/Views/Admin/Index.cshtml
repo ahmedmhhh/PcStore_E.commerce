@@ -5,11 +5,15 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Products Index</h2>
-
 <div class="panal panel-default">
     <div class="panel-heading">
         <h3>All products</h3>
+        <div class="text-right form-group">
+            <form action="Index" method="post">
+                <input class="form-control" id="searchValue" name="searchValue" type="text" placeholder="Search for Products"/>
+                <input class="btn btn-info" type="submit" value="Search"/>
+            </form>
+        </div>
     </div>
     <div class="panel-body">
         <table class="table table-condensed table-striped table-bordered">
@@ -57,7 +61,7 @@
                         @Html.DisplayFor(modelItem => item.Specilization)
                     </td>
                     <td class="text-center">
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id },new { @class="btn btn-danger btn-xs"})
+                        @Html.ActionLink("Delete", "Delete", new { Id = item.Id },new { @class="btn btn-danger btn-xs"})
                     </td>
                 </tr>
             }

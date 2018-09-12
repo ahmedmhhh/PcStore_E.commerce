@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Admin : Edit"+Model.Name;
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    HtmlHelper.ClientValidationEnabled = false;
+    HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
 }
 
 <div class="panel">
@@ -10,13 +12,13 @@
     </div>
 
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Edit","Admin",FormMethod.Post,new { encType="multipart/form-data"}))
     {
         <div class="panel-body">
             @Html.HiddenFor(b => b.Id)
             @foreach (var item in ViewData.ModelMetadata.Properties)
             {
-                if (item.PropertyName != "Id")
+                if (item.PropertyName != "Id"&&item.PropertyName!="ImageData"&&item.PropertyName!="ImageMimeType")
                 {
                     <div class="form-group">
                         <label>@(item.DisplayName ?? item.PropertyName)</label>
@@ -33,7 +35,34 @@
                 }
             }
             
-        </div>
+            <div class="form-group col-xs-7">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @*<label>Upload Image</label>*@
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-default btn-file">
+                                    Browse… <input type="file" id="imgInp" name="Image">
+                                </span>
+                            </span>
+                            <input type="text" class="form-control" readonly>
+                        </div>
+                        <img id='img-upload' />
+                    </div>
+                </div>
+                @if (Model.ImageData == null)
+                {
+                    <div class="form-control-static ">No Image</div>
+                }
+                else
+                {
+                    <img class="img-thumbnail" width="110" height="110" src="@Url.Action("GetImage","Pc",
+                                                                            new { Model.Id})" />
+
+                }
+            </div>
+            </div>
+
         <div class="panel-footer">
             <input type="submit" value="save" class="btn btn-primary" />
             @Html.ActionLink("Cancel and return to list", "Index", null, new { @class = "btn btn-default" })

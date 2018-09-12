@@ -11,5 +11,6 @@ namespace PcStore.Domain.Abstract
     {
         IEnumerable<Product> products { get; }
         void SaveProduct(Product product);
+        Product DeleteProduct(int Id);
     }
 }

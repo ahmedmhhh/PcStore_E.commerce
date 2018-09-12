@@ -19,11 +19,24 @@ namespace PcStore.Domain.Concrete
             }
         }
 
+        public Product DeleteProduct(int Id)
+        {
+            Product dbEntity = context.Products.Find(Id);
+            if (dbEntity != null)
+            {
+                context.Products.Remove(dbEntity);
+                context.SaveChanges();
+            }
+            return dbEntity;
+        }
+
         public void SaveProduct(Product product)
         {
-                Product dbEntity = context.Products.Find(product.Id);
+           Product dbEntity = context.Products.Find(product.Id);
             if (dbEntity == null)
+            {
                 context.Products.Add(product);
+            }
             else
             {
                 dbEntity.Name = product.Name;
@@ -31,6 +44,8 @@ namespace PcStore.Domain.Concrete
                 dbEntity.Brands = product.Brands;
                 dbEntity.Price = product.Price;
                 dbEntity.Specilization = product.Specilization;
+                dbEntity.ImageData = product.ImageData;
+                dbEntity.ImageMimeType = product.ImageMimeType;
             }
             context.SaveChanges();
             

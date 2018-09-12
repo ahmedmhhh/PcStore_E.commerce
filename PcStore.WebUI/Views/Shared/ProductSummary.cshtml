@@ -1,18 +1,33 @@
 ﻿@model PcStore.Domain.Entities.Product
 
 <div class="well">
-    <h3>
-        <strong>@Model.Name</strong>
-    <span class="pull-right label-primary">@Model.Price.ToString("c")</span>
-    </h3>
-    <span class="lead">@Model.Description</span> 
+    @if (Model.ImageData != null)
+    {
+        <div class="pull-left" style="margin-right:10px">
+            <img class="img-circle" width="100" height="100"
+                 src="@Url.Action("GetImage","Pc",new {Model.Id })" />
+            <h3><span class="pull-right label label-primary">@Model.Price.ToString("c")</span></h3>
+
+
+
+        </div>
+    }
+
+    <p>ID: @Model.Id</p>
+    <strong>
+        @Model.Name
+    </strong>
+
     @using (Html.BeginForm("AddToCart", "Cart"))
     {
         <div class="pull-right">
-            @Html.HiddenFor(b=>b.Id)
-            @Html.Hidden("returnUrl",Request.Url.PathAndQuery)
-            <input type="submit" class="btn btn-success" value="Add to cart"/>
-         </div>
+            @Html.HiddenFor(b => b.Id)
+            @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+            <input type="submit" class="btn btn-success" value="Add To Cart" />
+        </div>
+
     }
+    <div class="lead"><h5>@Model.Description</h5></div>
+
 </div>
 

@@ -18,10 +18,12 @@ namespace PcStore.Domain.Entities
         [Required(ErrorMessage ="Please enter discription of product")]
         public string Description { get; set; }
         [Required]
-        [Range(0.1,100.000,ErrorMessage ="Please a vaild pirce")]
+        [Range(0.1,100000,ErrorMessage ="Please a vaild pirce")]
         public decimal Price { get; set; }
         public string Brands { get; set; }
         [Required]
         public string Specilization { get; set; }
+        public byte[] ImageData { get; set; }
+        public string ImageMimeType { get; set; }
     }
 }
