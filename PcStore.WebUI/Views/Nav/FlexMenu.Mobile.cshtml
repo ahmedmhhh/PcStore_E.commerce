@@ -1,0 +1,15 @@
+﻿@model IEnumerable<string>
+<div class="navbar">
+    <ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            @Html.RouteLink(item,new { Controller="Pc",action="List",specilization=item,page=1}
+                ,new {
+                    data_transition="fade",
+                    @class=(item==ViewBag.SelectedSpec)?"ui-btn-active":null
+                })
+        </li>
+    }
+</ul>
+</div>

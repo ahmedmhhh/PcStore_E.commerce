@@ -8,6 +8,10 @@
 
     @foreach (var item in Model)
     {
-        @Html.RouteLink(item, new { controller = "Pc", action = "List", specilization = item, page = 1 }, new { @class = horizontal? "btn btn-default btn-sm" : "btn btn-block btn-default btn-lg " + ((item == ViewBag.SelectedSpec) ? "btn-primary" : "").ToString() })
+        @Html.RouteLink(item, new { controller = "Pc", action = "List", specilization = item, page = 1 },
+       new { @class = horizontal? "btn btn-default btn-sm" : "btn btn-block btn-default btn-lg " +
+       ((item == ViewBag.SelectedSpec) ? "btn-primary" : "").ToString(),
+       @style = "overflow:hidden;text-overflow:ellipsis"
+       })
     }
 </div>

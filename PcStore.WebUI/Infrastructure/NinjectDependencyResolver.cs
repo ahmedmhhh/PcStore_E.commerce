@@ -9,6 +9,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Configuration;
+using PcStore.WebUI.Infrastructure.Abstract;
+using PcStore.WebUI.Infrastructure.Concrete;
 
 namespace PcStore.WebUI.Infrastructure
 {
@@ -33,6 +35,7 @@ namespace PcStore.WebUI.Infrastructure
                 WriteAsFile =bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"]??"false")
             };
             kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings",emailsettings);
+            kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
         }
 
         public object GetService(Type serviceType)

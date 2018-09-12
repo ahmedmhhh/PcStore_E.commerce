@@ -10,5 +10,6 @@ namespace PcStore.Domain.Abstract
     public interface IPcRepository
     {
         IEnumerable<Product> products { get; }
+        void SaveProduct(Product product);
     }
 }

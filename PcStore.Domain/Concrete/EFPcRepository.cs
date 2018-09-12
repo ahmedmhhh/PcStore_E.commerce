@@ -18,5 +18,22 @@ namespace PcStore.Domain.Concrete
                 return context.Products;
             }
         }
+
+        public void SaveProduct(Product product)
+        {
+                Product dbEntity = context.Products.Find(product.Id);
+            if (dbEntity == null)
+                context.Products.Add(product);
+            else
+            {
+                dbEntity.Name = product.Name;
+                dbEntity.Description = product.Description;
+                dbEntity.Brands = product.Brands;
+                dbEntity.Price = product.Price;
+                dbEntity.Specilization = product.Specilization;
+            }
+            context.SaveChanges();
+            
+        }
     }
 }

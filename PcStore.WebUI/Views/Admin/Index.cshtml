@@ -1,0 +1,74 @@
+﻿@model IEnumerable<PcStore.Domain.Entities.Product>
+
+@{
+    ViewBag.Title = "Admin : All Products";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Products Index</h2>
+
+<div class="panal panel-default">
+    <div class="panel-heading">
+        <h3>All products</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-condensed table-striped table-bordered">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th class="text-right">
+                    Price
+                </th>
+                <th>
+                    Brands
+                </th>
+                <th>
+                    Specilization
+                </th>
+                <th>Actions</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.ActionLink(item.Name,"Edit",new { item.Id})
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td class="text-right">
+                        @item.Price.ToString("c")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Brands)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Specilization)
+                    </td>
+                    <td class="text-center">
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id },new { @class="btn btn-danger btn-xs"})
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div class="panel-footer">
+        <p>
+            @Html.ActionLink("Create New", "Create",null, new { @class="btn btn-default"})
+        </p>
+    </div>
+</div>
+
+
